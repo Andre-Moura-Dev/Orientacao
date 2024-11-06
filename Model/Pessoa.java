@@ -1,28 +1,51 @@
 package Matricula.Model;
 
-public class Pessoa {
-    
-    private String nome;
-    private int idade;
+import java.util.Random;
 
-    public Pessoa(String nome, int idade) {
-        this.nome = nome;
-        this.idade = idade;
+public class Aluno extends Pessoa {
+
+    private int matricula;
+    private String turma;
+    private Turno turno;
+
+    public Aluno(String nome, int idade, String turma) {
+        super(nome, idade);
+        this.turma = turma;
     }
 
-    public String getNome() {
-        return this.nome;
+    public int getMatricula() {
+        return matricula;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
     }
 
-    public int getIdade() {
-        return this.idade;
+    public String getTurma() {
+        return turma;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setTurma(String turma) {
+        this.turma = turma;
+    }
+
+    public Turno getTurno() {
+        return turno;
+    }
+
+    public void setTurno(Turno turno) {
+        this.turno = turno;
+    }
+
+    // Geração mais robusta da matrícula
+    public void geraMatricula() {
+        Random rn = new Random();
+        // Gera matrícula com 6 dígitos
+        this.matricula = rn.nextInt(900000) + 100000;
+    }
+
+    // Atualiza o turno com base em uma string
+    public void salvarTurno(String opcaoTurno) {
+        this.turno = Turno.fromString(opcaoTurno); // Usando o método do Enum
     }
 }
